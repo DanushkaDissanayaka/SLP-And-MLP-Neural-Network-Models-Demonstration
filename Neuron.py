@@ -56,7 +56,7 @@ class Neuron():
 
 
 if __name__ == "__main__":
-    neuron = Neuron(activation = 'sigmoid', weight=np.array([0.4,1.4,-2.4]), lr = 0.01)
+    neuron = Neuron(activation = 'sigmoid', weight=np.array([5.4,1.4,-2.4]), lr = 0.01)
     data =[
         [[0,0],0],
         [[0,1],0],
@@ -64,7 +64,7 @@ if __name__ == "__main__":
         [[1,1],1]
     ]
 
-    for i in range(10000):
+    for i in range(1000):
         print ('Epoc' , i)
         error = 0
         for e in data:
@@ -83,6 +83,10 @@ if __name__ == "__main__":
         v2 = neuron.output([0,1])
         error = ((abs(1-v1) + abs(0-v2))/2)
         print ('Test Error = ',error)
+
+        f = open("data.txt", "a")
+        f.write(str(i)+","+str(error)+'\n')
+        f.close()
 
         if error < 0.01:
             break
